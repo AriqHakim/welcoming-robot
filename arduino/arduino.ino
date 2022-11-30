@@ -30,16 +30,17 @@ void loop() {
     return;
   } else {
     currPos = perintah.toInt();
-    if(headPos < currPos){
+    if(headPos <= currPos){
       headPos += 5;
     }
 
-    if(headPos > currPos){
+    if(headPos >= currPos){
       headPos -= 5;
     }
 
     head.write(headPos);
     wave();
+    hand.write(handPos);
   }
 
 //  Serial.println(perintah);
@@ -48,14 +49,12 @@ void loop() {
 
 void wave() {
   if (handCheckPoint <= waveLowPos) {
-    handPos += 1;
-    hand.write(handPos);
+    handPos += 5;
     if (handPos == waveHighPos) {
       handCheckPoint = waveHighPos;
     }
   } else if (handCheckPoint >= waveHighPos) {
-    handPos -= 1;
-    hand.write(handPos);
+    handPos -= 5;
     if (handPos == waveLowPos) {
       handCheckPoint = waveLowPos;
     }
